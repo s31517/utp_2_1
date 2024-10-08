@@ -7,13 +7,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class MainTest {
     ElOps elops = new ElOps();
     @Test
-    public void test1(){
+    public void TestAddition(){
         assertEquals(9, elops.add(4, 5));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {3,45,0,444})
-    public void test2(int expr){
+    public void testAddition2(int expr){
         assertEquals(6, elops.add(3, expr));
     }
 
@@ -21,5 +21,18 @@ public class MainTest {
     @ValueSource(ints = {-3,5, 0, 34})
     public void test3(int expr){
         assertEquals(true, elops.isPositive(expr));
+    }
+
+    @Test
+    public void TestPosNeg(){
+        assertAll(
+                () -> assertTrue(elops.isNegative(-4)),
+                () -> assertTrue(elops.isPositive(5)),
+                () -> assertTrue(elops.isNegative(-0)),
+                () -> assertTrue(elops.isPositive(0)),
+                () -> assertTrue(elops.isNegative(4)),
+                () -> assertTrue(elops.isPositive(-5))
+        );
+
     }
 }
